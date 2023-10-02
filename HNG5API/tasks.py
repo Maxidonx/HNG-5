@@ -4,7 +4,7 @@ from django.conf import settings
 import os
 from django.core.files.storage import default_storage
 from pydub import AudioSegment
-from base.models import Recordings
+from .models import Recordings
 from moviepy.editor import VideoFileClip
 from .serializers import TranscriptionSerializer
 from asgiref.sync import sync_to_async
