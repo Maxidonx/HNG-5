@@ -4,7 +4,7 @@ import uuid
 from django.core.validators import FileExtensionValidator
 
 
-BASE_URL = 'https://recorder-api.onrender.com'
+BASE_URL = 'https://task-5-62nf.onrender.com'
 
 # class VideoSerializers(serializers.ModelSerializer):
 #     full_video_url = serializers.SerializerMethodField()

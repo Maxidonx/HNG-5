@@ -1,24 +1,13 @@
-from moviepy.editor import VideoFileClip
-from moviepy.video.io.ffmpeg_tools import ffmpeg_extract_audio
-from moviepy.editor import VideoFileClip, concatenate_videoclips
-import tempfile
-from django.shortcuts import get_object_or_404, render
 from rest_framework.response import Response
 from rest_api_payload import error_response, success_response
 from rest_framework import generics
-from django.http import HttpRequest, HttpResponse
+from django.http import HttpRequest
 from rest_framework import status
-import uuid
 from .serializers import CreateRecordingSerializer, GetRecordingSerializer
 from .models import Recordings
 from rest_framework.views import APIView
-from django.http import StreamingHttpResponse
-from rest_framework.renderers import JSONRenderer
 from django.conf import settings
 import os
-from django.core.files import File
-import io
-from django.core.files.base import ContentFile
 from .tasks import merge_recording
 
 
@@ -110,6 +99,7 @@ class GetDataView(APIView):
 
 
 class MergeRecordingView(generics.UpdateAPIView):
+    serializer_class = GetRecordingSerializer
 
     def put(self, request, id):
         recording_id = id
