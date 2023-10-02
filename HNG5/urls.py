@@ -1,8 +1,7 @@
-"""
-URL configuration for HNG5 project.
+"""recorder URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
-    https://docs.djangoproject.com/en/4.2/topics/http/urls/
+    https://docs.djangoproject.com/en/3.2/topics/http/urls/
 Examples:
 Function views
     1. Add an import:  from my_app import views
@@ -18,11 +17,10 @@ from django.contrib import admin
 from django.urls import path
 from django.conf import settings
 from django.conf.urls.static import static
-from HNG5API.views import CreateRecordingView, GetDataView, MergeRecordingView, AllRecordingsView
+from HNG5API.views import CreateRecordingView, GetDataView, AllRecordingsView, SingleVideoView, MergeRecordingView
 from rest_framework import permissions
 from drf_yasg.views import get_schema_view
 from drf_yasg import openapi
-
 
 schema_view = get_schema_view(
     openapi.Info(
@@ -39,7 +37,10 @@ urlpatterns = [
     path('api/create/', CreateRecordingView.as_view()),
     path('api/all/', AllRecordingsView.as_view()),
     path('api/save-data/<int:id>/', GetDataView.as_view()),
-    path('api/merge-data/', MergeRecordingView.as_view()),
+    path('api/merge-data/<int:id>/', MergeRecordingView.as_view()),
+    path('api/<int:id>/', SingleVideoView.as_view()),
+    
+    
     # path('api/recording/<int:id>/', VideoRecordingsView.as_view()),
     # path('api/video/<int:id>/', SingleVideoView.as_view()),
     # path('api/stream/<int:id>/', RecordingVideoView.as_view()),
