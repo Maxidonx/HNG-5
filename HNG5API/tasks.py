@@ -1,4 +1,4 @@
-import whisper
+#import whisper
 from celery import shared_task
 from django.conf import settings
 import os
@@ -9,7 +9,7 @@ from moviepy.editor import *
 from .serializers import TranscriptionSerializer
 from asgiref.sync import sync_to_async
 
-model = whisper.load_model("base")
+#model = whisper.load_model("base")
 
 
 # class Transcribe:
