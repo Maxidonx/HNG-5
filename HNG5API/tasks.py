@@ -4,18 +4,51 @@ from django.conf import settings
 import os
 from django.core.files.storage import default_storage
 from pydub import AudioSegment
-from .models import Video
-from moviepy.editor import VideoFileClip
+from .models import Recordings
+from moviepy.editor import *
 from .serializers import TranscriptionSerializer
 from asgiref.sync import sync_to_async
 
+# model = whisper.load_model("base")
+
+
+# class Transcribe:
+
+#     @staticmethod
+#     def get_audio_file(recording):
+#         path = default_storage.path(recording.video.name)
+#         if (recording.file.name.endswith('.mp4')):
+#             audio = AudioSegment.from_file(path, format='mp4')
+#             dir_path = os.path.dirname(path)
+#             new_file_name = recording.video.name.replace('.mp4', '.mp3')
+#             new_file_path = os.path.join(dir_path, new_file_name)
+#             audio.export(new_file_path, format='mp3')
+#         return path
+
+#     @sync_to_async
+#     def transcribe_file(self, recording_id):
+#         recording = Recordings.objects.filter(id=recording_id).first()
+#         if (not recording):
+#             return None
+#         audio_file = Transcribe.get_audio_file(recording)
+#         transcription = model.transcribe(audio_file)
+#         recording.transcript = transcription['text'].strip()
+#         recording.is_transcript_completed = True
+#         recording.save()
+#         data = TranscriptionSerializer(recording).data
+#         return data
+
+
+# @shared_task
+# def transcribe_video(recording_id):
+#     return Transcribe().transcribe_file(recording_id)
 
 
 @shared_task
 def merge_recording(recording_id):
     if recording_id:
         try:
-            recording = Video.objects.get(id=recording_id)
+            recording = Recordings.objects.get(id=recording_id)
             folder_name = recording.name
 
             folder_path = os.path.join(
@@ -52,7 +85,7 @@ def merge_recording(recording_id):
             # transcribe_video(recording_id)
 
             return 'Video files merged successfully'
-        except Video.DoesNotExist:
+        except Recordings.DoesNotExist:
             return 'Recording not found'
     else:
         return 'Recording ID not provided'
