@@ -40,14 +40,6 @@ urlpatterns = [
     path('api/merge-data/<int:id>/', MergeRecordingView.as_view()),
     path('api/<int:id>/', SingleVideoView.as_view()),
     
-    
-    # path('api/recording/<int:id>/', VideoRecordingsView.as_view()),
-    # path('api/video/<int:id>/', SingleVideoView.as_view()),
-    # path('api/stream/<int:id>/', RecordingVideoView.as_view()),
-
-
-
-
 
     path('', schema_view.with_ui('swagger', cache_timeout=0),
          name='schema-swagger-ui'),

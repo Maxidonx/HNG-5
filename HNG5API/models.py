@@ -23,13 +23,3 @@ class Recordings(TimeStamp):
 
     def __str__(self):
         return self.name
-
-
-# class VideoRecordings(TimeStamp):
-#     recording = models.ForeignKey(Recordings, on_delete=models.CASCADE)
-#     video = models.FileField(("Video File"), upload_to='videos/', null=True)
-#     transcript = models.TextField(blank=True, null=True)
-
-
-#     def __str__(self):
-#         return self.recordings.name + ": " + str(self.video)
