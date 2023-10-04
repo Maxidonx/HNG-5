@@ -64,7 +64,7 @@ For subsequent chunks:
 Merge Video Chunk (POST)
 Append a video chunk to an existing video.
 Method: POST
-Endpoint: https://recorder-api.onrender.com/api/merge-data/<video_id>/
+Endpoint: https://task-5-62nf.onrender.com/api/merge-data/<video_id>/
 Response: JSON with a success message.
 For the first chunk:
 
@@ -74,11 +74,11 @@ For the first chunk:
 Get Video (GET)
 Retrieve the compiled video for a specific video ID.
 Method: GET
-Endpoint: https://recorder-api.onrender.com/api/<video_id>/
+Endpoint: https://task-5-62nf.onrender.com/api/<video_id>/
 Response: JSON with a data message..
 Example Request:
 
-curl https://recorder-api.onrender.com/api/53/
+curl https://task-5-62nf.onrender.com/api/1/
 Example Response
 
 {
@@ -89,7 +89,7 @@ Example Response
         "name": "2bbb3478-12b9-428a-9b63-b5d13f7a0a43",
         "title": null,
         "transcript": null,
-        "video": "/media/videos/video_53.webm",
+        "video": "/media/videos/video_1.webm",
         "is_completed": false,
         "is_transcript_completed": false,
         "created_at": "2023-10-01T19:50:15.024237Z"
